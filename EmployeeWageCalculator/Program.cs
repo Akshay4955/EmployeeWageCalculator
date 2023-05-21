@@ -6,6 +6,7 @@ namespace EmployeeWageCalculator
     {
         const int IS_PART_TIME = 1, IS_FULL_TIME = 2;
         const int RATE_PER_HOUR = 20;
+        const int MAX_WORKING_DAYS = 20, MAX_WORKING_HOURS = 100;
         int empHours;
         static void Main(string[] args)
         {
@@ -15,9 +16,11 @@ namespace EmployeeWageCalculator
         }
         void getAttendance()
         {
-            int totalEmpHours = 0;
-            for (int i = 1; i <= 20; i++)
+            int totalEmpHours = 0, totalEmpWage = 0, totalWorkingDays = 0;
+            while (totalEmpHours < MAX_WORKING_HOURS && totalWorkingDays < MAX_WORKING_DAYS)
             {
+                int empHours = 0;
+                totalWorkingDays++;
                 Random random = new Random();
                 int empCheck = random.Next(3);
                 switch (empCheck)
@@ -32,10 +35,13 @@ namespace EmployeeWageCalculator
                         empHours = 0;
                         break;
                 }
+                int empWage = empHours * RATE_PER_HOUR;
+                totalEmpWage += empWage;
+                Console.WriteLine($"Employee earned : {empWage}");
                 totalEmpHours += empHours;
             }
-            int empMonthlyWage = totalEmpHours * RATE_PER_HOUR;
-            Console.WriteLine("Employee earned in a month: " + empMonthlyWage);
+            Console.WriteLine("Employee earned in a month: " + totalEmpWage + '\n' + $"Employee worked for " +
+                $"{totalEmpHours} hours in month");
         }
     }
 }
