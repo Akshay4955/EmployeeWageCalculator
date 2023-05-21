@@ -18,17 +18,17 @@ namespace EmployeeWageCalculator
         {
             Random random = new Random();
             int empCheck = random.Next(3);
-            if (empCheck == IS_PART_TIME)
+            switch (empCheck)
             {
-                empHours = 4;
-            }
-            else if (empCheck == IS_FULL_TIME)
-            {
-                empHours = 8;
-            }
-            else
-            {
-                empHours = 0;
+                case IS_PART_TIME:
+                    empHours = 4;
+                    break;
+                case IS_FULL_TIME:
+                    empHours = 8;
+                    break;
+                default:
+                    empHours = 0;
+                    break;
             }
         }
         void getDailyWage()
