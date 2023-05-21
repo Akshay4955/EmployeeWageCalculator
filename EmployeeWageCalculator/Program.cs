@@ -5,22 +5,31 @@ namespace EmployeeWageCalculator
     internal class Program
     {
         const int IS_PRESENT = 1;
+        const int RATE_PER_HOUR = 20;
+        int empHours;
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to employee wage calculator...!!!");
-            getAttendance();
+            Program program = new Program();
+            program.getAttendance();
+            program.getDailyWage();
         }
-        static void getAttendance()
+        void getAttendance()
         {
             Random random = new Random();
             if (random.Next(2) == IS_PRESENT)
             {
-                Console.WriteLine("Employee is present");
+                empHours = 8;
             }
             else
             {
-                Console.WriteLine("Employee is absent");
+                empHours = 0;
             }
+        }
+        void getDailyWage()
+        {
+            int dailyWage = empHours * RATE_PER_HOUR;
+            Console.WriteLine("Employee earned today : " + dailyWage);
         }
     }
 }
