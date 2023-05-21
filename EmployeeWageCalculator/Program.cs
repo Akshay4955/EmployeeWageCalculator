@@ -12,29 +12,30 @@ namespace EmployeeWageCalculator
             Console.WriteLine("Welcome to employee wage calculator...!!!");
             Program program = new Program();
             program.getAttendance();
-            program.getDailyWage();
         }
         void getAttendance()
         {
-            Random random = new Random();
-            int empCheck = random.Next(3);
-            switch (empCheck)
+            int totalEmpHours = 0;
+            for (int i = 1; i <= 20; i++)
             {
-                case IS_PART_TIME:
-                    empHours = 4;
-                    break;
-                case IS_FULL_TIME:
-                    empHours = 8;
-                    break;
-                default:
-                    empHours = 0;
-                    break;
+                Random random = new Random();
+                int empCheck = random.Next(3);
+                switch (empCheck)
+                {
+                    case IS_PART_TIME:
+                        empHours = 4;
+                        break;
+                    case IS_FULL_TIME:
+                        empHours = 8;
+                        break;
+                    default:
+                        empHours = 0;
+                        break;
+                }
+                totalEmpHours += empHours;
             }
-        }
-        void getDailyWage()
-        {
-            int dailyWage = empHours * RATE_PER_HOUR;
-            Console.WriteLine("Employee earned today : " + dailyWage);
+            int empMonthlyWage = totalEmpHours * RATE_PER_HOUR;
+            Console.WriteLine("Employee earned in a month: " + empMonthlyWage);
         }
     }
 }
